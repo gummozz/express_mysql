@@ -24,19 +24,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 // DB connection
 app.use(function(req, res, next) {
 
-	global.connection = mysql.createConnection({
+	res.locals.connection = mysql.createConnection({
 		host	: '172.26.2.129',
 		user	: 'cvuser',
 		password: 'Melker123!',
 		database: 'cv'
 	});
-	connection.connect();
+	res.locals.connection.connect();
 	next();
 
 });
 
 app.use(function (req, res, next){
-	global.localhostname = os.hostname();
+	res.locals.localhostname = os.hostname();
 	next();
 });
 

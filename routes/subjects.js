@@ -3,10 +3,14 @@ var router = express.Router();
 
 /* GET subjects listing. */
 router.get('/', function(req, res, next) {
-	connection.query('SELECT * FROM subject', function (error, results, fields) {
+	res.locals.connection.query('SELECT * FROM subject', function (error, results, fields) {
 
-		if (error) throw error;
-		res.send(JSON.stringify({"status": 200, "error": null, "respondingNode": localhostname,"response": results}));
+		if (error){ 
+			res.send(JSON.stringify({"status": 500, "error": null, "respondingNode": res.locals.localhostname,"response": null}));
+		}
+		else {
+			res.send(JSON.stringify({"status": 200, "error": null, "respondingNode": res.locals.localhostname,"response": results}));	
+		}
 	});
 
 });
