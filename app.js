@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require("mysql");
+var os = require("os");
 
 var indexRouter = require('./routes/index');
 var subjectsRouter = require('./routes/subjects');
@@ -32,6 +33,11 @@ app.use(function(req, res, next) {
 	connection.connect();
 	next();
 
+});
+
+app.use(function (req, res, next){
+	global.localhostname = os.hostname();
+	next();
 });
 
 app.use('/', indexRouter);

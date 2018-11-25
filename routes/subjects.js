@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
 	connection.query('SELECT * FROM subject', function (error, results, fields) {
 
 		if (error) throw error;
-		res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+		res.send(JSON.stringify({"status": 200, "error": null, "frontEndNode": localhostname,"response": results}));
 	});
 
 });
