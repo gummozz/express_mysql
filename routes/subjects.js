@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+const cache = require("../cache.js");
 /* GET subjects listing. */
 router.get('/', function(req, res, next) {
 	res.locals.connection.query('SELECT * FROM subject', function (error, results, fields) {
@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 			res.send(JSON.stringify({"status": 500, "error": null, "respondingNode": res.locals.localhostname,"response": null}));
 		}
 		else {
-			res.send(JSON.stringify({"status": 200, "error": null, "respondingNode": res.locals.localhostname,"response": results}));	
+			res.json({"status": 200, "error": null, "respondingNode": res.locals.localhostname,"response": results});	
 		}
 	});
 

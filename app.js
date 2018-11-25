@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mysql = require("mysql");
 var os = require("os");
-
+var pretty = require('express-prettify');
 var indexRouter = require('./routes/index');
 var subjectsRouter = require('./routes/subjects');
 
@@ -15,6 +15,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
+app.use(pretty({ query: 'pretty' }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
