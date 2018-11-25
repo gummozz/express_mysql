@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
 	res.locals.connection.query('SELECT * FROM subject', function (error, results, fields) {
 
 		if (error){ 
-			res.send(JSON.stringify({"status": 500, "error": null, "respondingNode": res.locals.localhostname,"response": null}));
+			res.json({"status": 500, "error": null, "respondingNode": res.locals.localhostname,"response": null});
 		}
 		else {
 			res.json({"status": 200, "error": null, "respondingNode": res.locals.localhostname,"response": results});	
